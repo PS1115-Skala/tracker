@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{% block title %}Simple Sidebar - Start Bootstrap Template{% endblock %}</title>
+
+    {% comment %} Bootstrap core CSS {% endcomment %}
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.min.css" %}">
+
+    {% comment %} Custom styles for this template {% endcomment %}
+    <link rel="stylesheet" href="{% static "css/simple-sidebar.css" %}">
+</head>
+
+<body>
+    <div class="d-flex" id="wrapper">
+        {% block sidebar %}
+        <div class="bg-light border-light" id="sidebar-wrapper">
+            <div class="sidebar-heading">Start Bootstrap </div>
+            <div class="list-group list-group-flush">
+                <a href="#" class="list-group-item list-group-item-action bg-light">Dashboard</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Shortcuts</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Overview</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Events</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Profile</a>
+                <a href="#" class="list-group-item list-group-item-action bg-light">Status</a>
+            </div>
+        </div>
+        {% endblock %}
+
+        {% comment %} Page Content {% endcomment %}
+        <div id="page-content-wrapper">
+            {% block content %}
+
+            {% endblock %}
+
+        </div>
+        {% comment %} /#page-content-wrapper {% endcomment %}
+    </div>
+    {% comment %} /#wrapper {% endcomment %}
+    
+    {% comment %} Bootstrap core JavaScript {% endcomment %}
+    <script src="{% static "jquery/jquery.min.js" %}"></script>
+    <script src="{% static "bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+
+    {% comment %} Menu Toggle Script {% endcomment %}
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+</body>
+
+
+</html>
