@@ -35,7 +35,7 @@ class LoginView(generic.edit.FormView):
         if form.is_valid():
             email = form.cleaned_data['your_email']
             password = form.cleaned_data['your_pass']
-            user = authenticate(request, email, password)
+            user = authenticate(request, username=email, password=password)
             if user is not None:
                 login(request, user)
                 return HttpResponseRedirect('/index/')
@@ -71,7 +71,7 @@ class RegisterView(generic.base.TemplateView):
             user.save()
             position = UserPosition(position=position, id_user=user)
             position.save()
-            return HttpResponseRedirect('index/')
+            return HttpResponseRedirect('/index/')
         
         return render(request, template_name, {'form':form})
 
