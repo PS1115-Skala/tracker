@@ -22,19 +22,33 @@
 
         {% comment %} Page Content {% endcomment %}
         <div id="page-content-wrapper">
-            {% block content %}
-            <form action="{% url 'trackerApp:login' %}" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Inciar Sesión">
-            </form>
-            {% endblock %}
-
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-4 offset-md-4">
+                        {% block content %}
+                        <form action="{% url 'trackerApp:login' %}" method="post">
+                            {% csrf_token %}
+                            <div class="container-fluid">
+                                <div class="row">
+                                    {{form.your_email.label_tag}}
+                                    {{ form.your_email }}
+                                </div>
+                                <div class="row">
+                                    {{ form.your_pass.label_tag }}
+                                    {{ form.your_pass }}
+                                </div>
+                            </div>
+                            <input type="submit" value="Inciar Sesión">
+                        </form>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
         </div>
         {% comment %} /#page-content-wrapper {% endcomment %}
     </div>
     {% comment %} /#wrapper {% endcomment %}
-    
+
     {% comment %} Bootstrap core JavaScript {% endcomment %}
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
