@@ -23,7 +23,11 @@
         {% comment %} Page Content {% endcomment %}
         <div id="page-content-wrapper">
             {% block content %}
-
+            <form action="{% url 'trackerApp:register' %}" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Registar Usuario">
+            </form>
             {% endblock %}
 
         </div>
