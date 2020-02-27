@@ -10,7 +10,7 @@
                   <h5 class="card-title">Randy Wallas</h5>
                   <p class="card-text">Estudiante universitario de ingenieria en computacion. Apasionado por el desarrollo de aplicaciones</p>
                   <div class="text-right">
-                      <a href="" class="btn btn-primary">Editar</a>
+                      <button onclick="edit()" class="btn btn-primary">Editar</button>
                   </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                         <label for="exampleInputPassword1">Sexo</label>
                         <div class="input-group mb-3">
                             <div class="input-group-prepend">
-                              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>Genero</button>
+                              <button class="btn btn-outline-secondary dropdown-toggle" id= "button-gender" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>Genero</button>
                               <div class="dropdown-menu">
                                 <a class="dropdown-item" href="#">Action</a>
                                 <a class="dropdown-item" href="#">Another action</a>
@@ -45,7 +45,7 @@
                             <input type="text" class="form-control" aria-label="Text input with dropdown button" readonly placeholder="Macho">
                           </div>
                       </div>
-                    <button type="submit" class="btn btn-primary" hidden>Guardar</button>
+                    <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
                   </form>
                 </div>
             </div>
@@ -53,4 +53,5 @@
     </div>
 
 </div>
+
 {% endblock %}
