@@ -15,6 +15,8 @@
 
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 
 <body>
@@ -23,16 +25,57 @@
         {% comment %} Page Content {% endcomment %}
         <div id="page-content-wrapper">
             {% block content %}
-            <form action="{% url 'trackerApp:register' %}" method="post">
-                {% csrf_token %}
-                {{ form }}
-                <input type="submit" value="Registar Usuario">
-            </form>
-            {% endblock %}
-
+            <div class="container-fluid h-vh">
+                <div class="row align-items-center h-ei">
+                    <div class="col-4 offset-4 ">
+                        <form action="{% url 'trackerApp:register' %}"  method="post">
+                            {% csrf_token %}
+                            <div class="container-fluid">
+                                <div class="row">
+                                    {{form.your_name.label_tag}}
+                                </div>
+                                <div class="row ">
+                                    {{ form.your_name}}
+                                </div>
+                                <div class="row pad-top">
+                                    {{form.your_last_name.label_tag}}
+                                </div>
+                                <div class="row ">
+                                    {{ form.your_last_name}}
+                                </div>
+                                <div class="row pad-top">
+                                    {{form.your_email.label_tag}}
+                                </div>
+                                <div class="row ">
+                                    {{ form.your_email}}
+                                </div>
+                                <div class="row pad-top">
+                                    {{form.your_pass.label_tag}}
+                                </div>
+                                <div class="row ">
+                                    {{ form.your_pass}}
+                                </div>
+                                <div class="row pad-top">
+                                    {{form.your_position.label_tag}}
+                                </div>
+                                <div class="row ">
+                                    {{ form.your_position}}
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row pad-top">
+                                    <input type="submit"class="prueba" value="Registar Usuario">
+                                </div>
+                            </div>
+                        </form>
+                        {% endblock %}
+                    </div>
+                </div>
+            </div>
         </div>
         {% comment %} /#page-content-wrapper {% endcomment %}
     </div>
+
     {% comment %} /#wrapper {% endcomment %}
     
     {% comment %} Bootstrap core JavaScript {% endcomment %}
