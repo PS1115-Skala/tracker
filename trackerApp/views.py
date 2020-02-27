@@ -40,11 +40,10 @@ class LoginView(generic.edit.FormView):
                 login(request, user)
                 return HttpResponseRedirect('/index/')
             else:
-                return render(request, template_name, {'form':form})
+                return render(request, self.template_name, {'form':form})
         
-        return render(request, template_name, {'form':form})
+        return render(request, self.template_name, {'form':form})
 
-    
 
 class RegisterView(generic.base.TemplateView):
     form_class = RegisterForm
@@ -64,16 +63,29 @@ class RegisterView(generic.base.TemplateView):
             email = form.cleaned_data['your_email']
             password = form.cleaned_data['your_pass']
             position = form.cleaned_data['your_position']
+            try:
+                user = User.objects.create_user(email, email, password)
+                user.first_name = name
+                user.last_name = last_name
+                user.save()
+                position = UserPosition(position=position, id_user=user)
+                position.save()
 
-            user = User.objects.create_user(email, email, password)
-            user.first_name = name
-            user.last_name = last_name
-            user.save()
-            position = UserPosition(position=position, id_user=user)
-            position.save()
-            return HttpResponseRedirect('/index/')
-        
-        return render(request, template_name, {'form':form})
+                user = authenticate(request, username=email, password=password)
+                if user is not None:
+                    login(request, user)
+                    return HttpResponseRedirect('/index/')
+                else:
+                    context = {'form':form}
+                    context['errorMessage'] = 'Error de Servidor'
+                    return render(request, self.template_name, context)
+            except:
+                context = {'form':form}
+                context['errorMessage'] = 'El usuario ya existe'
+                return render(request, self.template_name, context)
+        context = {'form':form}
+        context['errorMessage'] = 'El formulario no es válido'
+        return render(request, self.template_name, {'form':form})
 
 
 class ProfileView(generic.detail.DetailView):
