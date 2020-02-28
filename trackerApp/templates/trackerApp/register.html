@@ -30,13 +30,11 @@
                     <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
                         <div class="row">
                             <div class="col-8 offset-2">
-
                                 <div class="card bg-light mb-3">
-                                    <div class="card-header">
+                                    <div class="card-header header-txt">
                                         Registrar Nuevo Usuario
                                     </div>
                                     <div class="card-body">
-
                                         <form action="{% url 'trackerApp:register' %}" method="post">
                                             {% csrf_token %}
                                             <div class="container-fluid">
@@ -72,8 +70,13 @@
                                                 </div>
                                             </div>
                                             <div class="container-fluid">
-                                                <div class="row pad-top">
-                                                    <input type="submit" class="prueba" value="Registar Usuario">
+                                                <div class="row pad-topp cen-but">
+                                                    <input type="submit" class="prueba but" value="Registrar Usuario">
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <div class="row pad-topp cen-but">
+                                                    <input type="submit" class="prueba but" value="Registrar Usuario">
                                                 </div>
                                             </div>
                                         </form>
