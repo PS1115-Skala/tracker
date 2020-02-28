@@ -2,6 +2,7 @@ from django.urls import path, include, re_path
 
 from .views import IndexView, RedirectView, LoginView, RegisterView, ProfileView
 
+app_name = 'trackerApp'
 urlpatterns = [
     path('', RedirectView.as_view(url='login/'), name='redirect'),
     re_path(r'^index/$', IndexView.as_view(), name='index'),

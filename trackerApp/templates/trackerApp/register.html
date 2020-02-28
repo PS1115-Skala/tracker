@@ -15,6 +15,8 @@
 
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 
 <body>
@@ -23,14 +25,75 @@
         {% comment %} Page Content {% endcomment %}
         <div id="page-content-wrapper">
             {% block content %}
-
+            <div class="container-fluid h-vh">
+                <div class="row align-items-center h-ei">
+                    <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
+                        <div class="row">
+                            <div class="col-8 offset-2">
+                                <div class="card bg-light mb-3">
+                                    <div class="card-header header-txt">
+                                        Registrar Nuevo Usuario
+                                    </div>
+                                    <div class="card-body">
+                                        <form action="{% url 'trackerApp:register' %}" method="post">
+                                            {% csrf_token %}
+                                            <div class="container-fluid">
+                                                <div class="row">
+                                                    {{form.your_name.label_tag}}
+                                                </div>
+                                                <div class="row ">
+                                                    {{ form.your_name}}
+                                                </div>
+                                                <div class="row pad-top">
+                                                    {{form.your_last_name.label_tag}}
+                                                </div>
+                                                <div class="row ">
+                                                    {{ form.your_last_name}}
+                                                </div>
+                                                <div class="row pad-top">
+                                                    {{form.your_email.label_tag}}
+                                                </div>
+                                                <div class="row ">
+                                                    {{ form.your_email}}
+                                                </div>
+                                                <div class="row pad-top">
+                                                    {{form.your_pass.label_tag}}
+                                                </div>
+                                                <div class="row ">
+                                                    {{ form.your_pass}}
+                                                </div>
+                                                <div class="row pad-top">
+                                                    {{form.your_position.label_tag}}
+                                                </div>
+                                                <div class="row ">
+                                                    {{ form.your_position}}
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <div class="row pad-topp cen-but">
+                                                    <input type="submit" class="prueba but" value="Registrar Usuario">
+                                                </div>
+                                            </div>
+                                            <div class="container-fluid">
+                                                <div class="row pad-topp cen-but">
+                                                    <p><a href="{% url 'trackerApp:login' %}">Ya poseo una cuenta</a></p>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             {% endblock %}
-
         </div>
         {% comment %} /#page-content-wrapper {% endcomment %}
     </div>
+
     {% comment %} /#wrapper {% endcomment %}
-    
+
     {% comment %} Bootstrap core JavaScript {% endcomment %}
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
