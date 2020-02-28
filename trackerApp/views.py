@@ -3,13 +3,16 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm
 from .models import Activity, UserPosition
 
 
-class IndexView(generic.list.ListView):
+class IndexView(LoginRequiredMixin, generic.list.ListView):
+    login_url = '/login/'
+    redirect_field_name = 'index'
     template_name = 'trackerApp/base_index.html'
     model = Activity
     context_object_name = 'my_activities'
