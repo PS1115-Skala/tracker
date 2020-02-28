@@ -1,0 +1,36 @@
+.h-vh {
+    height: 100vh;
+}
+
+.h-ei {
+    height: 100%;
+}
+.pad-top {
+    padding-top: 2%;
+}
+
+.pad-topp {
+    padding-top: 8%;
+}
+
+.expand {
+    width: 100%;
+}
+
+.but {
+    background: #04dfb8;
+    font-size: 18px;
+    padding: 4%;
+    border: black;
+    border-radius: 20px;
+    width: 54%;
+}
+
+.cen-but {
+    justify-content: center;
+}
+
+.header-txt {
+    font-size: 20px;
+    text-align: center;
+}
