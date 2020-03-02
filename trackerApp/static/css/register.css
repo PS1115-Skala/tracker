@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(45deg, rgba(226,45,7,1) 0%, rgba(247,176,25,1) 100%);
+}
+
 .h-vh {
     height: 100vh;
 }
