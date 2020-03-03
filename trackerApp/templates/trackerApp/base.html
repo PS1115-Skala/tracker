@@ -15,6 +15,10 @@
 
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -23,9 +27,9 @@
         <div class="bg-light border-light" id="sidebar-wrapper">
             <div class="sidebar-heading">Tracker </div>
             <div class="list-group list-group-flush">
-                <a href="{% url 'trackerApp:index' %}" class="list-group-item list-group-item-action bg-light">Home</a>
-                <a href="{% url 'trackerApp:profile' request.user.id %}" class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="{% url 'trackerApp:login' %}" class="list-group-item list-group-item-action bg-light">Logout</a>
+                <a href="{% url 'trackerApp:index' %}" class="list-group-item list-group-item-action bg-light"> <i class="fas fa-home"></i>  Home</a>
+                <a href="{% url 'trackerApp:profile' request.user.id %}" class="list-group-item list-group-item-action bg-light"> <i class="fas fa-user-alt"></i>   Profile</a>
+                <a href="{% url 'trackerApp:login' %}" class="list-group-item list-group-item-action bg-light"> <i class="fas fa-sign-out-alt"></i> Logout</a>
             </div>
         </div>
         {% endblock %}
