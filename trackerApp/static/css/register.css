@@ -1,5 +1,5 @@
 body {
-    background: linear-gradient(45deg, rgba(226,45,7,1) 0%, rgba(247,176,25,1) 100%);
+    background: linear-gradient(45deg, rgba(var(--color-primary-rgb),1) 0%, rgba(var(--color-secondary-rgb),1) 100%);
 }
 
 .h-vh {
