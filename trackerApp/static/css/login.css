@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(45deg, rgba(var(--color-primary-rgb),1) 0%, rgba(var(--color-secondary-rgb),1) 100%);
+}
+
 .h-vh {
     height: 100vh;
 }
@@ -18,7 +22,7 @@
 }
 
 .but {
-    background: #04dfb8;
+    background: #04df72;
     font-size: 18px;
     padding: 4%;
     border: black;
