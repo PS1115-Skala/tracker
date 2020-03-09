@@ -94,3 +94,8 @@ class RegisterView(generic.base.TemplateView):
 class ProfileView(generic.detail.DetailView):
     model = User
     template_name = "trackerApp/base_profile.html"
+
+class ActivityView(generic.detail.DetailView):
+    model = User
+    template_name = "trackerApp/activity.html"
+
