@@ -75,6 +75,7 @@ class RegisterView(generic.base.TemplateView):
                 position = UserPosition(position=position, id_user=user)
                 position.save()
 
+
                 user = authenticate(request, username=email, password=password)
                 if user is not None:
                     login(request, user)
@@ -97,13 +98,20 @@ class ProfileView(generic.detail.DetailView):
     model = User
     template_name = "trackerApp/base_profile.html"  
 
+    def get(self,request, *args, **kwargs):
+        position=UserPosition.objects.get(id_user=request.user.id)
+        request.session['position']=position.position
+        return render(request, self.template_name)
+
+
     def post(self, request, *args, **kwargs):     
        
         validator=EmailValidator()
         position=UserPosition.objects.get(id_user=request.user.id)        
         request.session['position']=position.position        
         email=request.POST['formInputEmail']
-        inputPosition=request.POST['formInputPosition']         
+        inputPosition=request.POST['formInputPosition']  
+               
         try:  
 
             if(inputPosition!=None): #Se introduce el cargo
@@ -119,6 +127,7 @@ class ProfileView(generic.detail.DetailView):
             return render(request, self.template_name)
         #print("username", form.cleaned_data['your_email'])
         return render(request, self.template_name)
+
 class LoanView(generic.detail.DetailView):
     model = User
     template_name = "trackerApp/base_loan.html"
