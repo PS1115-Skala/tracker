@@ -8,7 +8,7 @@ from django.core.validators import EmailValidator
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm
-from .models import Activity, UserPosition
+from .models import Activity, UserData
 
 
 class IndexView(LoginRequiredMixin, generic.list.ListView):
@@ -72,7 +72,7 @@ class RegisterView(generic.base.TemplateView):
                 user.first_name = name
                 user.last_name = last_name
                 user.save()
-                position = UserPosition(position=position, id_user=user)
+                position = UserData(position=position, id_user=user)
                 position.save()
 
 
@@ -99,34 +99,36 @@ class ProfileView(generic.detail.DetailView):
     template_name = "trackerApp/base_profile.html"  
 
     def get(self,request, *args, **kwargs):
-        position=UserPosition.objects.get(id_user=request.user.id)
+        position=UserData.objects.get(id_user=request.user.id)
         request.session['position']=position.position
+        
         return render(request, self.template_name)
 
 
     def post(self, request, *args, **kwargs):     
        
         validator=EmailValidator()
-        position=UserPosition.objects.get(id_user=request.user.id)        
+        position=UserData.objects.get(id_user=request.user.id)        
         request.session['position']=position.position        
         email=request.POST['formInputEmail']
-        inputPosition=request.POST['formInputPosition']  
-               
+        inputPosition=request.POST['formInputPosition'] 
+        
         try:  
 
-            if(inputPosition!=None): #Se introduce el cargo
+            if(inputPosition!=""): #Se introduce el cargo
+                
                 position.position=inputPosition
                 position.save()  
-
             validator(email) #Se verifica que se haya introducido un email
             user=User.objects.get(id=request.user.id)
             user.username=email
             user.save()
         except:            
             
-            return render(request, self.template_name)
+            return HttpResponseRedirect("")
         #print("username", form.cleaned_data['your_email'])
-        return render(request, self.template_name)
+        #return render(request, self.template_name)
+        return HttpResponseRedirect("")
 
 class LoanView(generic.detail.DetailView):
     model = User
