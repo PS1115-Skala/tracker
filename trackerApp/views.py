@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.validators import EmailValidator
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm
@@ -90,11 +91,36 @@ class RegisterView(generic.base.TemplateView):
         context['errorMessage'] = 'El formulario no es válido'
         return render(request, self.template_name, {'form':form})
 
-
 class ProfileView(generic.detail.DetailView):
+   
+    
     model = User
-    template_name = "trackerApp/base_profile.html"
+    template_name = "trackerApp/base_profile.html"  
 
+    def post(self, request, *args, **kwargs):     
+       
+        validator=EmailValidator()
+        position=UserPosition.objects.get(id_user=request.user.id)        
+        request.session['position']=position.position        
+        email=request.POST['formInputEmail']
+        inputPosition=request.POST['formInputPosition']         
+        try:  
+
+            if(inputPosition!=None): #Se introduce el cargo
+                position.position=inputPosition
+                position.save()  
+
+            validator(email) #Se verifica que se haya introducido un email
+            user=User.objects.get(id=request.user.id)
+            user.username=email
+            user.save()
+        except:            
+            
+            return render(request, self.template_name)
+        #print("username", form.cleaned_data['your_email'])
+        return render(request, self.template_name)
 class LoanView(generic.detail.DetailView):
     model = User
     template_name = "trackerApp/base_loan.html"
+
+
