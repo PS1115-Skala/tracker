@@ -92,5 +92,23 @@ class RegisterView(generic.base.TemplateView):
 
 
 class ProfileView(generic.detail.DetailView):
+   
+    
     model = User
-    template_name = "trackerApp/base_profile.html"
+    template_name = "trackerApp/base_profile.html"  
+
+
+    def post(self, request, *args, **kwargs):       
+
+        email=request.POST['formInputEmail']      
+        try:
+            user=User.objects.get(id=request.user.id)
+            user.username=email
+            user.save()
+
+        except:
+            context= {'form' : form}
+            return render(request, self.template_name, context)
+        #print("username", form.cleaned_data['your_email'])
+        return render(request, self.template_name)
+
