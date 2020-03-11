@@ -99,36 +99,51 @@ class ProfileView(generic.detail.DetailView):
     template_name = "trackerApp/base_profile.html"  
 
     def get(self,request, *args, **kwargs):
-        position=UserData.objects.get(id_user=request.user.id)
-        request.session['position']=position.position
-        
+        user=UserData.objects.get(id_user=request.user.id)
+        request.session['position']=user.position
+        request.session['genre']=user.genre
         return render(request, self.template_name)
 
 
     def post(self, request, *args, **kwargs):     
        
         validator=EmailValidator()
-        position=UserData.objects.get(id_user=request.user.id)        
-        request.session['position']=position.position        
+        user=UserData.objects.get(id_user=request.user.id)        
+        request.session['position']=user.position
         email=request.POST['formInputEmail']
-        inputPosition=request.POST['formInputPosition'] 
-        
-        try:  
+        inputPosition=request.POST['formInputPosition']
 
-            if(inputPosition!=""): #Se introduce el cargo
-                
-                position.position=inputPosition
-                position.save()  
-            validator(email) #Se verifica que se haya introducido un email
-            user=User.objects.get(id=request.user.id)
-            user.username=email
+        #request.session['genre']=user.genre
+        inputGenre=request.POST['formInputGenre']
+        #inputGenre=request.POST['formInputGenre']
+
+        try:
+            print("1")
+            if(inputPosition != ""): #Se introduce el cargo
+                print("2")
+                user.position=inputPosition
+                print("3")
+                user.save()  
+                print("4")
+            print("5")
+            #validator(email) #Se verifica que se haya introducido un email
+            print("6")
+            #user=User.objects.get(id=request.user.id)
+            #user.username=email
+
+            if(inputGenre != ""): #Se introduce el cargo
+                user.genre=inputGenre
+                print("7")
+            print("8")
             user.save()
-        except:            
-            
-            return HttpResponseRedirect("")
+            print(user)
+        except:
+            print("exect")
+            return render(request, self.template_name)
+            #return HttpResponseRedirect("")
         #print("username", form.cleaned_data['your_email'])
-        #return render(request, self.template_name)
-        return HttpResponseRedirect("")
+        return render(request, self.template_name)
+        #return HttpResponseRedirect("")
 
 class LoanView(generic.detail.DetailView):
     model = User
