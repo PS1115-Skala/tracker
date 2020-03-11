@@ -21,13 +21,20 @@ body {
     width: 100%;
 }
 
+.bord-card {
+    border-radius: 25px;
+}
+
 .but {
-    background: #04df72;
+    background: #00A6A6;
     font-size: 18px;
     padding: 4%;
     border: black;
     border-radius: 20px;
-    width: 54%;
+    width: fit-content;
+    padding-left: 50px;
+    padding-right: 50px;
+    color: #FFF;
 }
 
 .cen-but {
@@ -37,4 +44,15 @@ body {
 .header-txt {
     font-size: 20px;
     text-align: center;
+    font-weight: bold;
+}
+
+.logo {
+    margin: inherit;
+    /* height: 100% !important; */
+}
+
+.link {
+    color: #7D7F7D;
+    font-size: 20px;
 }

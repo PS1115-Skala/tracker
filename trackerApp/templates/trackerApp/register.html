@@ -49,11 +49,12 @@
             {% block content %}
             <div class="container-fluid h-vh">
                 <div class="row align-items-center h-ei">
-                    <div class="col-md-6 col-sm-0 logo d-flex">
-                        <img src="{% static 'images/logo-bg.jpg' %}" class="img-fluid" alt="Responsive image">
+                    <div class="col-md-6 col-sm-0 logo">
+                        <img src="{% static 'images/logo-bg.jpg' %}" class="d-sm-none d-md-block img-fluid" alt="Responsive image">
                     </div>
                     <div class="col-md-4 offset-md-1 col-sm-10 offset-sm-1">
                         <div class="card bg-light mb-3 bord-card">
+                            <img src="{% static 'images/logo.png' %}" class="d-none d-sm-block d-md-none mx-auto" alt="Responsive image">
                             <div class="card-header header-txt ">
                                 Nuevo Usuario
                             </div>
