@@ -8,7 +8,7 @@
                 <img src="https://rimworldwiki.com/images/thumb/3/33/Randy.png/250px-Randy.png" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{ request.user.first_name }} {{request.user.last_name}} </h5>
-                  <p class="card-text">Estudiante universitario de ingenieria en computacion. Apasionado por el desarrollo de aplicaciones</p>
+                  <p class="card-text">{{request.session.description}}</p>
                   <div class="text-right">
                       <button onclick="edit()" class="btn btn-primary">Editar</button>
                   </div>
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Cargo Actual</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" name="formInputPosition" readonly placeholder={{request.session.position}}>
+                      <input type="text" class="form-control" id="exampleInputPassword1" maxlength="20" name="formInputPosition" readonly placeholder="{{request.session.position}}">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Sexo</label>
@@ -46,6 +46,10 @@
                             <input type="text" class="form-control" aria-label="Text input with dropdown button" readonly placeholder="Masculino">
                           </div>
                       </div>
+                      <div class="form-group">
+                      <label for="exampleInputDescription">Descripcion</label>
+                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" readonly placeholder="{{request.session.description}}"></textarea>
+                    </div>
                     <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
                   </form>
                 </div>

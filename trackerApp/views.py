@@ -99,8 +99,12 @@ class ProfileView(generic.detail.DetailView):
     template_name = "trackerApp/base_profile.html"  
 
     def get(self,request, *args, **kwargs):
-        position=UserData.objects.get(id_user=request.user.id)
-        request.session['position']=position.position
+        userdata=UserData.objects.get(id_user=request.user.id)
+        request.session['position']=userdata.position
+        request.session['description']=userdata.description
+
+        print(request.session['description'])
+
         
         return render(request, self.template_name)
 
@@ -108,17 +112,23 @@ class ProfileView(generic.detail.DetailView):
     def post(self, request, *args, **kwargs):     
        
         validator=EmailValidator()
-        position=UserData.objects.get(id_user=request.user.id)        
-        request.session['position']=position.position        
+        userdata=UserData.objects.get(id_user=request.user.id)        
+        request.session['position']=userdata.position 
+        request.session['description']=userdata.description       
         email=request.POST['formInputEmail']
         inputPosition=request.POST['formInputPosition'] 
+        inputDescription=request.POST['formInputDescription']
         
         try:  
 
             if(inputPosition!=""): #Se introduce el cargo
                 
-                position.position=inputPosition
-                position.save()  
+                userdata.position=inputPosition
+                userdata.save()  
+            if(inputDescription!=""): #Se introduce la descripcion                
+                userdata.description=inputDescription
+                userdata.save() 
+
             validator(email) #Se verifica que se haya introducido un email
             user=User.objects.get(id=request.user.id)
             user.username=email
