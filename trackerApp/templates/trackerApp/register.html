@@ -49,7 +49,7 @@
             {% block content %}
             <div class="container-fluid h-vh">
                 <div class="row align-items-center h-ei">
-                    <div class="col-md-6 col-sm-0 logo">
+                    <div class="col-md-6 col-sm-0 logo d-flex">
                         <img src="{% static 'images/logo-bg.jpg' %}" class="img-fluid" alt="Responsive image">
                     </div>
                     <div class="col-md-4 offset-md-1 col-sm-10 offset-sm-1">
@@ -99,7 +99,7 @@
                                     </div>
                                     <div class="container-fluid">
                                         <div class="row pad-topp cen-but">
-                                            <p><a href="{% url 'trackerApp:login' %}">Ya poseo una cuenta</a>
+                                            <p><a class="count" href="{% url 'trackerApp:login' %}">Ya poseo una cuenta</a>
                                             </p>
                                         </div>
                                     </div>
