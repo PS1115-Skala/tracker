@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
@@ -101,12 +101,12 @@ class ProfileView(generic.detail.DetailView):
     def get(self,request, *args, **kwargs):
         user=UserData.objects.get(id_user=request.user.id)
         request.session['position']=user.position
+        print(user.genre)
         request.session['genre']=user.genre
         return render(request, self.template_name)
 
 
-    def post(self, request, *args, **kwargs):     
-       
+    def post(self, request, *args, **kwargs):
         validator=EmailValidator()
         user=UserData.objects.get(id_user=request.user.id)        
         request.session['position']=user.position
@@ -118,32 +118,20 @@ class ProfileView(generic.detail.DetailView):
         #inputGenre=request.POST['formInputGenre']
 
         try:
-            print("1")
             if(inputPosition != ""): #Se introduce el cargo
-                print("2")
                 user.position=inputPosition
-                print("3")
                 user.save()  
-                print("4")
-            print("5")
             #validator(email) #Se verifica que se haya introducido un email
-            print("6")
             #user=User.objects.get(id=request.user.id)
             #user.username=email
 
             if(inputGenre != ""): #Se introduce el cargo
                 user.genre=inputGenre
-                print("7")
-            print("8")
             user.save()
-            print(user)
         except:
-            print("exect")
             return render(request, self.template_name)
-            #return HttpResponseRedirect("")
-        #print("username", form.cleaned_data['your_email'])
-        return render(request, self.template_name)
-        #return HttpResponseRedirect("")
+
+        return HttpResponseRedirect(self.request.path_info)
 
 class LoanView(generic.detail.DetailView):
     model = User
