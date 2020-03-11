@@ -49,12 +49,12 @@
             {% block content %}
             <div class="container-fluid h-vh">
                 <div class="row align-items-center h-ei">
-                    <div class="col-md-6 col-sm-0">
+                    <div class="col-md-6 col-sm-0 logo">
                         <img src="{% static 'images/logo-bg.jpg' %}" class="d-sm-none d-md-block img-fluid" alt="Responsive image">
                     </div>
-                    <div class="col-md-6 offset-md-0 col-sm-10 offset-sm-1">
-                        <div class="card bg-light mb-3">
-                            <img src="{% static 'images/logo.png' %}" class="d-lg-none d-sm-block mx-auto d-block" alt="Responsive image">
+                    <div class="col-md-4 offset-md-1 col-sm-10 offset-sm-1">
+                        <div class="card bg-light mb-3 bord-card">
+                            <img src="{% static 'images/logo.png' %}" class="mx-auto d-block" alt="Responsive image">
                             <div class="card-header header-txt">
                                 Login
                             </div>
@@ -91,7 +91,7 @@
                                     </div>
                                     <div class="container-fluid">
                                         <div class="row pad-topp cen-but">
-                                            <p><a href="{% url 'trackerApp:register' %}"> Registro de
+                                            <p><a href="{% url 'trackerApp:register' %}" class="link"> Nuevo 
                                                     usuario</a></p>
                                         </div>
                                     </div>
