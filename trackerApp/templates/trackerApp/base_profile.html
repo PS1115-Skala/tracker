@@ -5,7 +5,7 @@
     <div class="row">
         <div class="container-fluid-margin ml-5 mt-5 col-sm">
             <div class="card" style="width: 18rem;">
-                <img src="https://rimworldwiki.com/images/thumb/3/33/Randy.png/250px-Randy.png" class="card-img-top" alt="...">
+                <img src="{{request.session.image}}" class="card-img-top" alt="...">
                 <div class="card-body">
                   <h5 class="card-title">{{ request.user.first_name }} {{request.user.last_name}} </h5>
                   <p class="card-text">{{request.session.description}}</p>
@@ -19,7 +19,7 @@
             <div class="card" style="width: 100% ; height: auto;" >
                 <div class="card-body">
                   <h5 class="card-title">Informacion</h5>
-                  <form action="" method="post">
+                  <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                       <label for="exampleInputEmail1">Correo</label>
@@ -50,6 +50,10 @@
                       <label for="exampleInputDescription">Descripcion</label>
                       <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" readonly placeholder="{{request.session.description}}"></textarea>
                     </div>
+                    <div class="form-group">
+                    <label for="id_image">Foto de perfil</label>
+                    <input id="id_image" type="file" class="" name="image" readonly placeholder="" disabled style="color:transparent">
+                  </div>
                     <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
                   </form>
                 </div>

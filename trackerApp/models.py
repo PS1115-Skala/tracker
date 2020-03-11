@@ -7,12 +7,14 @@ class UserData(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
     position = models.CharField(max_length=20)
     description=models.CharField(max_length=200)
+    profileImage=models.ImageField( default= '/profileImages/default.jpg',upload_to="profileImages")
 
     def __str__(self):
         return ('\nNombre: ' + self.first_name + ' ' + self.last_name +
             '\nCorreo: ' + self.email +
             '\nPosicion: ' + self.position +
-            '\nDescripcion: '+ self.description
+            '\nDescripcion: '+ self.description +
+            '\nImagen: '+ self.profileImage
             )
 
 class Activity(models.Model):

@@ -99,13 +99,11 @@ class ProfileView(generic.detail.DetailView):
     template_name = "trackerApp/base_profile.html"  
 
     def get(self,request, *args, **kwargs):
+
         userdata=UserData.objects.get(id_user=request.user.id)
         request.session['position']=userdata.position
         request.session['description']=userdata.description
-
-        print(request.session['description'])
-
-        
+        request.session['image']=userdata.profileImage.url        
         return render(request, self.template_name)
 
 
@@ -114,12 +112,17 @@ class ProfileView(generic.detail.DetailView):
         validator=EmailValidator()
         userdata=UserData.objects.get(id_user=request.user.id)        
         request.session['position']=userdata.position 
-        request.session['description']=userdata.description       
+        request.session['description']=userdata.description              
         email=request.POST['formInputEmail']
         inputPosition=request.POST['formInputPosition'] 
         inputDescription=request.POST['formInputDescription']
+        inputImage=request.FILES.get('image')      
         
         try:  
+
+            if(inputImage!=None):
+                userdata.profileImage=inputImage
+                userdata.save()
 
             if(inputPosition!=""): #Se introduce el cargo
                 

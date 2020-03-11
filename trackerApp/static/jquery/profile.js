@@ -5,6 +5,7 @@ function edit() {
     document.getElementById("button-gender").disabled = false;
     document.getElementById("button-save").hidden = false;
     document.getElementById("exampleInputDescription").readOnly = false;
+    document.getElementById("id_image").disabled = false;
 }
 
 function save(){
@@ -13,7 +14,5 @@ function save(){
     document.getElementById("exampleInputDescription").readOnly = true;
     document.getElementById("button-gender").disabled = true;
     document.getElementById("button-save").hidden = true;
-
-
-    
+    document.getElementById("id_image").disabled = true;
 }
