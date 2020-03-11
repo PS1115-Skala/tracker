@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib import messages
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm
@@ -44,6 +45,12 @@ class LoginView(generic.edit.FormView):
                 return HttpResponseRedirect('/index/')
             else:
                 return render(request, self.template_name, {'form':form})
+        else:
+            context = {'form':form}
+            messages.info(request, 'Usuario o Correo Electrónico inválido')
+            #context['errorMessage'] = 'Usuario o Correo Electrónico inválido'
+            return render(request, self.template_name, context)
+
         
         return render(request, self.template_name, {'form':form})
 
