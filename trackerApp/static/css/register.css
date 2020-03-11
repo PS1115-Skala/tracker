@@ -22,12 +22,12 @@ body {
 }
 
 .but {
-    background: #04dfb8;
+    background: #00a6a6;
     font-size: 18px;
     padding: 4%;
     border: black;
     border-radius: 20px;
-    width: 100%;
+    width: fit-content;
 }
 
 .cen-but {
@@ -37,4 +37,14 @@ body {
 .header-txt {
     font-size: 20px;
     text-align: center;
+    font-weight: bold;
+}
+
+.bord-card {
+    border-radius: 25px;
+}
+
+.logo {
+    margin: inherit;
+    /* height: 100% !important; */
 }
