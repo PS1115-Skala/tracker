@@ -88,7 +88,7 @@ class RegisterView(generic.base.TemplateView):
                     return HttpResponseRedirect('/index/')
                 else:
                     context = {'form':form}
-                    messages.info(request, 'Error de Servidor')
+                    messages.info(request, 'Errorde Servidor')
                     return render(request, self.template_name, context)
             except:
                 context = {'form':form}
