@@ -12,7 +12,7 @@ class UserData(models.Model):
         ('Femenino', 'F'),
         ('Otro','O'),
     )
-    genre       = models.CharField(max_length=1, choices=genre_choice, default='Otro')
+    genre       = models.CharField(max_length=8, choices=genre_choice, default='Otro')
 
     def __str__(self):
         return ('\nPosicion: ' + self.position +
