@@ -47,7 +47,7 @@ class LoginView(generic.edit.FormView):
                 return render(request, self.template_name, {'form':form})
         else:
             context = {'form':form}
-            messages.info(request, 'Usuario o Correo Electrónico inválido')
+            messages.info(request, 'Correo o contraseña inválido')
             #context['errorMessage'] = 'Usuario o Correo Electrónico inválido'
             return render(request, self.template_name, context)
 
@@ -91,7 +91,8 @@ class RegisterView(generic.base.TemplateView):
                     return render(request, self.template_name, context)
             except:
                 context = {'form':form}
-                context['errorMessage'] = 'El usuario ya existe'
+                messages.info(request, 'Correo o contraseña inválida')
+                # context['errorMessage'] = 'El usuario ya existe'
                 return render(request, self.template_name, context)
         context = {'form':form}
         context['errorMessage'] = 'El formulario no es válido'
