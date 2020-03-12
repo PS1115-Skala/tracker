@@ -1,6 +1,10 @@
+
+import os
 from django.db import models
 from django.core.validators import EmailValidator
 from django.contrib.auth.models import User
+from django.conf import settings
+from django.core.files import File
 
 # Create your models here.
 class UserData(models.Model):
@@ -16,7 +20,21 @@ class UserData(models.Model):
             '\nDescripcion: '+ self.description +
             '\nImagen: '+ self.profileImage
             )
+    def eraseOldMedia(self):
+              
+        if('default.jpg' not in self.profileImage.name):        
+            eraseAddress= os.path.join(getattr(settings, 'MEDIA_ROOT', None),self.profileImage.name)
+            os.remove(eraseAddress)
 
+    def imageVerification(self):
+        name=self.profileImage.name
+        splitted=name.split(".")
+        extension=splitted[len(splitted)-1]
+        if(extension=="jpg" or extension=="png" or extension=="jpeg"):
+            return True
+        return False
+
+        
 class Activity(models.Model):
     title = models.CharField(max_length=80)
     start = models.DateField()

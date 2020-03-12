@@ -5,6 +5,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.validators import EmailValidator
+from django.core.validators import validate_image_file_extension
+from django.conf import settings
+
+
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm
@@ -98,12 +102,17 @@ class ProfileView(generic.detail.DetailView):
     model = User
     template_name = "trackerApp/base_profile.html"  
 
-    def get(self,request, *args, **kwargs):
+    
 
-        userdata=UserData.objects.get(id_user=request.user.id)
+
+    def get(self,request, *args, **kwargs):
+       
+        media_root=getattr(settings, 'MEDIA_ROOT', None)
+        userdata=UserData.objects.get(id_user=request.user.id)      
+        userdata.imageVerification()
         request.session['position']=userdata.position
         request.session['description']=userdata.description
-        request.session['image']=userdata.profileImage.url        
+        request.session['image']=userdata.profileImage.url
         return render(request, self.template_name)
 
 
@@ -116,11 +125,12 @@ class ProfileView(generic.detail.DetailView):
         email=request.POST['formInputEmail']
         inputPosition=request.POST['formInputPosition'] 
         inputDescription=request.POST['formInputDescription']
-        inputImage=request.FILES.get('image')      
-        
+        inputImage=request.FILES.get('image')        
         try:  
 
-            if(inputImage!=None):
+            if(inputImage!=None and userdata.imageVerification()):
+
+                userdata.eraseOldMedia()
                 userdata.profileImage=inputImage
                 userdata.save()
 
