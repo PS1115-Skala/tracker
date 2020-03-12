@@ -11,10 +11,11 @@
                     <input type="text" class="form-control text-center" style="border: none;" placeholder="Actividad">
                 </div>
                 <div class="col text-center">
-                    <span class="align-middle">0:00</span>
+                    <div id="reloj"></div>
                 </div>
                 <div class="col-sm-2">
-                    <button type="button" class="btn btn-primary ">Comenzar</button>
+                    <button onclick="startStatus()" type="button" id="start-button" class="btn btn-primary ">Comenzar</button>
+                    <button onclick="finishStatus()" type="button" id="finish-button" class="btn btn-danger" hidden>Terminar</button>
                 </div>
             </div>
         </div>
