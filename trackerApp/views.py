@@ -5,6 +5,10 @@ from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.validators import EmailValidator
+from django.core.validators import validate_image_file_extension
+from django.conf import settings
+
+
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm
@@ -98,40 +102,64 @@ class ProfileView(generic.detail.DetailView):
     model = User
     template_name = "trackerApp/base_profile.html"  
 
+    
+
+
     def get(self,request, *args, **kwargs):
-        user=UserData.objects.get(id_user=request.user.id)
-        request.session['position']=user.position
-        print(user.genre)
-        request.session['genre']=user.genre
+        userdata=UserData.objects.get(id_user=request.user.id)    
+        media_root=getattr(settings, 'MEDIA_ROOT', None)
+        userdata=UserData.objects.get(id_user=request.user.id)          
+        request.session['position']=userdata.position
+        request.session['description']=userdata.description
+        request.session['image']=userdata.profileImage.url
+        request.session['genre']=userdata.genre
         return render(request, self.template_name)
 
 
     def post(self, request, *args, **kwargs):
         validator=EmailValidator()
-        user=UserData.objects.get(id_user=request.user.id)        
-        request.session['position']=user.position
+
+        userdata=UserData.objects.get(id_user=request.user.id)        
+        request.session['position']=userdata.position
+        request.session['description']=userdata.description  
         email=request.POST['formInputEmail']
         inputPosition=request.POST['formInputPosition']
+        inputDescription=request.POST['formInputDescription']
+        inputGenre=request.POST['formInputGenre']
+        inputImage=request.FILES.get('image')   
 
         #request.session['genre']=user.genre
-        inputGenre=request.POST['formInputGenre']
+        
         #inputGenre=request.POST['formInputGenre']
 
         try:
             if(inputPosition != ""): #Se introduce el cargo
-                user.position=inputPosition
-                user.save()  
-            #validator(email) #Se verifica que se haya introducido un email
-            #user=User.objects.get(id=request.user.id)
-            #user.username=email
+                userdata.position=inputPosition
+                userdata.save()             
 
             if(inputGenre != ""): #Se introduce el cargo
-                user.genre=inputGenre
-            user.save()
-        except:
-            return render(request, self.template_name)
+                userdata.genre=inputGenre
+                userdata.save()
+            if(inputImage!=None and userdata.imageVerification()):
 
-        return HttpResponseRedirect(self.request.path_info)
+                userdata.eraseOldMedia()
+                userdata.profileImage=inputImage
+                userdata.save()
+
+            
+            if(inputDescription!=""): #Se introduce la descripcion                
+                userdata.description=inputDescription
+                userdata.save() 
+
+            validator(email) #Se verifica que se haya introducido un email
+            user=User.objects.get(id=request.user.id)
+            user.username=email
+            user.save()       
+            
+        except:
+            return HttpResponseRedirect("")
+
+        return HttpResponseRedirect("")
 
 class LoanView(generic.detail.DetailView):
     model = User
