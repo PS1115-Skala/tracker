@@ -96,6 +96,15 @@
                                     <div class="container-fluid">
                                         <div class="row pad-topp cen-but">
                                             <input type="submit" class="prueba but" value="Registrar Usuario">
+                                            {% if messages %}
+                                            <ul class="messages">
+                                                {% for message in messages %}
+                                                <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                                    {{ message }}
+                                                    </p>
+                                                    {% endfor %}
+                                            </ul>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="container-fluid">
