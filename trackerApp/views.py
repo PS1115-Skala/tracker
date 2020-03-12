@@ -44,11 +44,12 @@ class LoginView(generic.edit.FormView):
                 login(request, user)
                 return HttpResponseRedirect('/index/')
             else:
+                context = {'form':form}
+                messages.info(request, 'Correo o contraseña inválido')
                 return render(request, self.template_name, {'form':form})
         else:
             context = {'form':form}
             messages.info(request, 'Correo o contraseña inválido')
-            #context['errorMessage'] = 'Usuario o Correo Electrónico inválido'
             return render(request, self.template_name, context)
 
         
@@ -87,15 +88,14 @@ class RegisterView(generic.base.TemplateView):
                     return HttpResponseRedirect('/index/')
                 else:
                     context = {'form':form}
-                    context['errorMessage'] = 'Error de Servidor'
+                    messages.info(request, 'Error de Servidor')
                     return render(request, self.template_name, context)
             except:
                 context = {'form':form}
-                messages.info(request, 'Correo o contraseña inválida')
-                # context['errorMessage'] = 'El usuario ya existe'
+                messages.info(request, 'Usuario Resgistrado')
                 return render(request, self.template_name, context)
         context = {'form':form}
-        context['errorMessage'] = 'El formulario no es válido'
+        messages.info(request, 'Datos inválidos')
         return render(request, self.template_name, {'form':form})
 
 
