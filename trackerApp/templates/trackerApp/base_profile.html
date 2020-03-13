@@ -18,21 +18,21 @@
         <div class="container-fluid-margin  mt-5 col-8">
             <div class="card" style="width: 100% ; height: auto;" >
                 <div class="card-body">
-                  <h5 class="card-title">Informacion</h5>
+                  <h5 class="card-title">Información</h5>
                   <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                       <label for="exampleInputEmail1">Correo</label>
 
 
-                      <input type="email" class="form-control" id="exampleInputEmail1" name="formInputEmail" readonly placeholder={{request.user.username}}>
+                      <input type="email" class="form-control" id="exampleInputEmail1" name="formInputEmail" readonly value={{request.user.username}}>
                       
                       <!-- <small id="emailHelp" class="form-text text-muted">Tu nombre es muy Cool.</small> -->
 
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Cargo Actual</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" maxlength="20" name="formInputPosition" readonly placeholder="{{request.session.position}}">
+                      <input type="text" class="form-control" id="exampleInputPassword1" maxlength="20" name="formInputPosition" readonly value="{{request.session.position}}">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Sexo</label>
@@ -52,12 +52,12 @@
 
                       </div>
                       <div class="form-group">
-                      <label for="exampleInputDescription">Descripcion</label>
-                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" readonly placeholder="{{request.session.description}}"></textarea>
+                      <label for="exampleInputDescription">Descripción</label>
+                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" readonly value="{{request.session.description}}"></textarea>
                     </div>
                     <div class="form-group">
                     <label for="id_image">Foto de perfil</label>
-                    <input id="id_image" type="file" class="" name="image" readonly placeholder="" accept=".jpg, .png, .jpeg" disabled style="color:transparent">
+                    <input id="id_image" type="file" class="" name="image" readonly value="" accept=".jpg, .png, .jpeg" disabled style="color:transparent">
                   </div>
 
                     <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
