@@ -1,0 +1,21 @@
+:root {
+    --color-primary: #C22361;
+    --color-primary-rgb: 194, 35, 97;
+    --color-primary-light: #E0417E;
+    --color-primary-light-rgb: 224, 65, 126;
+    --color-primary-shade: #A40542;
+    --color-primary-shade-rgb: 164, 5, 66;
+
+    --color-secondary: #DB772A;
+    --color-secondary-rgb: 219, 119, 42;
+    --color-secondary-light: #F99548;
+    --color-secondary-light-rgb: 249, 149, 72;
+    --color-secondary-shade: #BD590C;
+    --color-secondary-shade-rgb: 189, 89, 12;
+
+    --color-light: #FFFFFF;
+    --color-light-rgb: 255, 255, 255;
+
+    --color-dark: #343434;
+    --color-dark-rgb: 52, 52, 52;
+}

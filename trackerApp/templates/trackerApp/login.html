@@ -3,67 +3,101 @@
 <html lang="en">
 
 <head>
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static 'images/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static 'images/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static 'images/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static 'images/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static 'images/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'images/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static 'images/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static 'images/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'images/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' type='image/x-icon' %}">
+
     <title>Iniciar Sesi&oacute;n</title>
+
+    {% comment %} Custom variables {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
 
     {% comment %} Bootstrap core CSS {% endcomment %}
     <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">
 
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
-    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
 
 </head>
 
 <body>
     <div class="d-flex" id="wrapper">
-
         {% comment %} Page Content {% endcomment %}
         <div id="page-content-wrapper">
             {% block content %}
             <div class="container-fluid h-vh">
                 <div class="row align-items-center h-ei">
-                    <div class="col-md-4 offset-md-4 col-sm-8 offset-sm-2">
-                        <div class="row">
-                            <div class="col-8 offset-2">
-                                <div class="card bg-light mb-3">
-                                    <div class="card-header header-txt">
-                                        Registrar Nuevo Usuario
+                    <div class="col-md-6 col-sm-0 logo">
+                        <img src="{% static 'images/logo-bg.jpg' %}" class="d-sm-none d-md-block img-fluid" alt="Responsive image">
+                    </div>
+                    <div class="col-md-4 offset-md-1 col-sm-10 offset-sm-1">
+                        <div class="card bg-light mb-3 bord-card">
+                            <img src="{% static 'images/logo.png' %}" class="mx-auto d-block" alt="Responsive image">
+                            <div class="card-header header-txt">
+                                Login
+                            </div>
+                            <div class="card-body">
+                                <form action="{% url 'trackerApp:login' %}" method="post">
+                                    {% csrf_token %}
+                                    <div class="container-fluid">
+                                        <div class="row pad-top">
+                                            {{form.your_email.label_tag}}
+                                        </div>
+                                        <div class="row ">
+                                            {{ form.your_email}}
+                                        </div>
+                                        <div class="row pad-top">
+                                            {{form.your_pass.label_tag}}
+                                        </div>
+                                        <div class="row ">
+                                            {{ form.your_pass}}
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <form action="{% url 'trackerApp:login' %}" method="post">
-                                            {% csrf_token %}
-                                            <div class="container-fluid">
-                                                <div class="row pad-top">
-                                                    {{form.your_email.label_tag}}
+                                    <div class="container-fluid">
+                                        <div class="row pad-topp cen-but">
+                                            <input type="submit" class="prueba but" value="Login">
+                                        </div>
+                                        <div class="text">
+                                            {% if messages %}
+                                            <div class="messages">
+                                                {% for message in messages %}
+                                                <p {% if message.tags %} class="{{ message.tags }}" {% endif %}>
+                                                    {{ message }}
+                                                    </p>
+                                                    {% endfor %}
                                                 </div>
-                                                <div class="row ">
-                                                    {{ form.your_email}}
-                                                </div>
-                                                <div class="row pad-top">
-                                                    {{form.your_pass.label_tag}}
-                                                </div>
-                                                <div class="row ">
-                                                    {{ form.your_pass}}
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid">
-                                                <div class="row pad-topp cen-but">
-                                                    <input type="submit" class="prueba but" value="Login">
-                                                </div>
-                                            </div>
-                                            <div class="container-fluid">
-                                                <div class="row pad-topp cen-but">
-                                                    <p><a href="{% url 'trackerApp:register' %}"> Registro de usuario</a></p>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="container-fluid">
+                                        <div class="row  cen-but">
+                                            <p><a href="{% url 'trackerApp:register' %}" class="link"> Nuevo 
+                                                    usuario</a></p>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

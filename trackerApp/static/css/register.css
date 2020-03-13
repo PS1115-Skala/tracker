@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(45deg, rgba(var(--color-primary-rgb),1) 0%, rgba(var(--color-secondary-rgb),1) 100%);
+}
+
 .h-vh {
     height: 100vh;
 }
@@ -11,6 +15,7 @@
 
 .pad-topp {
     padding-top: 8%;
+    padding-bottom: 8%;
 }
 
 .expand {
@@ -18,19 +23,40 @@
 }
 
 .but {
-    background: #04dfb8;
+    background: #00a6a6;
     font-size: 18px;
     padding: 4%;
     border: black;
     border-radius: 20px;
-    width: 100%;
+    width: fit-content;
+    color: #FFF;
 }
 
 .cen-but {
     justify-content: center;
 }
 
+.count {
+    color: #7d7f7d;
+}
 .header-txt {
     font-size: 20px;
     text-align: center;
+    font-weight: bold;
+}
+
+.bord-card {
+    border-radius: 25px;
+    font-size: 20px;
+}
+
+.logo {
+    margin: inherit;
+    /* height: 100% !important; */
+}
+
+.text {
+    text-align: center;
+    font-weight: bold;
+    color: crimson;
 }
