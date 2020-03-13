@@ -92,7 +92,7 @@ class RegisterView(generic.base.TemplateView):
                     return HttpResponseRedirect('/index/')
                 else:
                     context = {'form':form}
-                    messages.info(request, 'Errorde Servidor')
+                    messages.info(request, 'Error de Servidor')
                     return render(request, self.template_name, context)
             except:
                 context = {'form':form}
@@ -111,10 +111,10 @@ class ProfileView(generic.detail.DetailView):
     
 
 
-    def get(self,request, *args, **kwargs):
-        userdata=UserData.objects.get(id_user=request.user.id)    
+    def get(self, request, *args, **kwargs):
+        userdata=UserData.objects.get(id_user=request.user)
         media_root=getattr(settings, 'MEDIA_ROOT', None)
-        userdata=UserData.objects.get(id_user=request.user.id)          
+        # userdata=UserData.objects.get(id_user=request.user)          
         request.session['position']=userdata.position
         request.session['description']=userdata.description
         request.session['image']=userdata.profileImage.url
@@ -160,12 +160,13 @@ class ProfileView(generic.detail.DetailView):
             validator(email) #Se verifica que se haya introducido un email
             user=User.objects.get(id=request.user.id)
             user.username=email
+            user.email=email
             user.save()       
             
         except:
-            return HttpResponseRedirect("")
+            return HttpResponseRedirect('/profile/')
 
-        return HttpResponseRedirect("")
+        return HttpResponseRedirect('/profile/')
 
 class LoanView(generic.detail.DetailView):
     model = User

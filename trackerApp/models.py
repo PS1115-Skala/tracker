@@ -22,11 +22,10 @@ class UserData(models.Model):
   
 
     def __str__(self):
-        return ('\nNombre: ' + self.first_name + ' ' + self.last_name +
-            '\nCorreo: ' + self.email +
+        return (
+            '\nUsuario: ' + self.id_user.username +
             '\nPosicion: ' + self.position +
             '\nDescripcion: '+ self.description +
-            '\nImagen: '+ self.profileImage +
             '\nGenero: '+ self.genre
 
             )
