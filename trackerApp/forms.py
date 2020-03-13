@@ -23,3 +23,6 @@ class RegisterForm(forms.Form):
 
     your_position = forms.CharField(label='Cargo', max_length=20,
         widget=forms.TextInput(attrs={'class': 'expand'}))
+
+
+    

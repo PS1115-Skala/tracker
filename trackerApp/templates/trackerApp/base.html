@@ -37,6 +37,10 @@
 
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
+
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 </head>
 
 <body>
@@ -45,11 +49,43 @@
         <div class="bg-light border-light" id="sidebar-wrapper">
             <div class="sidebar-heading">Tracker </div>
             <div class="list-group list-group-flush">
-                <a href="{% url 'trackerApp:index' %}" class="list-group-item list-group-item-action bg-light">Home</a>
-                <a href="{% url 'trackerApp:profile' 1 %}"
-                    class="list-group-item list-group-item-action bg-light">Profile</a>
-                <a href="{% url 'trackerApp:login' %}"
-                    class="list-group-item list-group-item-action bg-light">Logout</a>
+
+                <a href="{% url 'trackerApp:index' %}" class="list-group-item list-group-item-action bg-light">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="col-10">Home</div>
+                    </div>
+                </a>
+
+                <a href="{% url 'trackerApp:profile' %}" class="list-group-item list-group-item-action bg-light">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-user-alt"></i>
+                        </div>
+                        <div class="col-10">Profile</div>
+                    </div>
+                </a>
+
+                <a href="{% url 'trackerApp:loan' request.user.id %}" class="list-group-item list-group-item-action bg-light">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div class="col-10">Prestamo</div>
+                    </div>
+                </a>
+
+                <a href="{% url 'trackerApp:login' %}" class="list-group-item list-group-item-action bg-light">
+                    <div class="row">
+                        <div class="col-1">
+                            <i class="fas fa-sign-out-alt"></i>
+                        </div>
+                        <div class="col-10">Logout</div>
+                    </div>
+                </a>
+            
             </div>
         </div>
         {% endblock %}
@@ -61,26 +97,6 @@
                 <button class="btn btn-primary" id="menu-toggle">Menu</button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <!-- <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
-                            </a> -->
-                            <div class="dropdown-menu dropdown-menu-right" aria-labellledby="navbarDropdown">
-                                <!-- <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a> -->
-                            </div>
-                        </li>
-                    </ul>
                 </div>
             </nav>
             {% block content %}
