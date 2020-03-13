@@ -3,10 +3,21 @@ var intervalId;
 var tiempoFinal;
 
 function startStatus() {
-    document.getElementById("start-button").hidden = true;
-    document.getElementById("finish-button").hidden = false;
-    fechaVieja = new Date();
-    intervalId = setInterval(muestraReloj, 1000);
+    $('#start-button').click(function(){
+    if($('#actividadInput').val() == ''){
+      alert('Input can not be left blank');
+    }
+    else{
+      startTime();
+    }
+    });
+}
+
+function startTime(){
+      document.getElementById("start-button").hidden = true;
+      document.getElementById("finish-button").hidden = false;
+      fechaVieja = new Date();
+      intervalId = setInterval(muestraReloj, 1000);
 }
 
 function finishStatus() {
