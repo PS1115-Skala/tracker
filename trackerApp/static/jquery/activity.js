@@ -3,14 +3,12 @@ var intervalId;
 var tiempoFinal;
 
 function startStatus() {
-    $('#start-button').click(function(){
     if($('#actividadInput').val() == ''){
       alert('Input can not be left blank');
     }
     else{
       startTime();
-    }
-    });
+    };
 }
 
 function startTime(){
