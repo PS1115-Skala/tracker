@@ -4,7 +4,7 @@ var tiempoFinal;
 
 function startStatus() {
     if($('#actividadInput').val() == ''){
-      alert('Input can not be left blank');
+      alert('Seleccione su actividad a trackear');
     }
     else{
       startTime();
