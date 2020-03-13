@@ -1,13 +1,15 @@
 from django.urls import path, include, re_path
 
-from .views import IndexView, RedirectView, LoginView, RegisterView, ProfileView, ActivityView
+from .views import IndexView, RedirectView, LoginView, RegisterView, ProfileView, LoanView, ActivityView
 
 app_name = 'trackerApp'
 urlpatterns = [
     path('', RedirectView.as_view(url='login/'), name='redirect'),
     re_path(r'^index/$', IndexView.as_view(), name='index'),
     path('register/', RegisterView.as_view(), name='register'),
+    path('loan/<int:pk>/', LoanView.as_view(), name='loan'),
     path('login/', LoginView.as_view(), name='login'),
     path('activity/<int:pk>/', ActivityView.as_view(), name='activity'),
-    path('profile/<int:pk>/', ProfileView.as_view(), name='profile')
+    path('profile/', ProfileView.as_view(), name='profile'),
+    
 ]
