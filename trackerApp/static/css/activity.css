@@ -1,0 +1,8 @@
+.no-border2 {
+    border: 0;
+    box-shadow: none;
+}
+
+.mycontent-left {
+    border-right: 1px dashed #333;
+  }
