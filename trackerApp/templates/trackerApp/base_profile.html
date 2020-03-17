@@ -48,16 +48,15 @@
 
                           <input type="text" class="form-control" readonly value="{{request.session.genre}}">
                         </div>
-                    </div>
-
                       </div>
+                      
                       <div class="form-group">
                       <label for="exampleInputDescription">Descripción</label>
-                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" readonly value="{{request.session.description}}"></textarea>
+                      <textarea style="resize: none" type="text" class="form-control" rows="4" readonly value="{request.session.description}}" id="exampleInputDescription" name="formInputDescription" maxlength="200" ></textarea>
                     </div>
                     <div class="form-group">
                     <label for="id_image">Foto de perfil</label>
-                    <input id="id_image" type="file" class="" name="image" readonly value="" accept=".jpg, .png, .jpeg" disabled style="color:transparent">
+                    <input id="id_image" type="file" class="hidden" name="image"  accept=".jpg, .png, .jpeg" disabled >
                   </div>
 
                     <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
