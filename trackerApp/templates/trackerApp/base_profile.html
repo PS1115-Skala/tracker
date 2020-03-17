@@ -52,7 +52,7 @@
                       
                       <div class="form-group">
                       <label for="exampleInputDescription">Descripción</label>
-                      <textarea style="resize: none" type="text" class="form-control" rows="4" readonly value="{request.session.description}}" id="exampleInputDescription" name="formInputDescription" maxlength="200" ></textarea>
+                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" disabled >{{request.session.description}}</textarea>
                     </div>
                     <div class="form-group">
                     <label for="id_image">Foto de perfil</label>
