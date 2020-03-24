@@ -23,7 +23,6 @@ class IndexView(LoginRequiredMixin, generic.base.TemplateView):
     model = Activity
     context_object_name = 'context'
 
-    
     def get_context_data(self, request):
         form = ActivityForm()
         queryset = Activity.objects.filter(id_user=request.user)
