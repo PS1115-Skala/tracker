@@ -123,3 +123,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'trackerApp/static/')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# EMAIL CONFIGURATION
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.googlemail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'skala2tracker@gmail.com'
+EMAIL_HOST_PASSWORD = 'skala2vaportodo$'
+EMAIL_USE_TLS = True
