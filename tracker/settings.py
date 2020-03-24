@@ -25,7 +25,7 @@ SECRET_KEY = 'nhda2$w4&93&5h)=b#^_vv_$(xsl^ke%e(_xq0@0ihohh_vx3k'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['167.172.253.197','pruebas.apireservac.xyz']
+ALLOWED_HOSTS = ['167.172.253.197', '127.0.0.1','pruebas.apireservac.xyz']
 
 
 # Application definition

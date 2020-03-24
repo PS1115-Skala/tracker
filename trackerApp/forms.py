@@ -1,4 +1,6 @@
 from django import forms
+from django.db import models
+from .models import *
 
 
 class LoginForm(forms.Form):
@@ -26,5 +28,15 @@ class RegisterForm(forms.Form):
     your_position = forms.CharField(label='Cargo', max_length=20,
         widget=forms.TextInput(attrs={'class': 'expand'}))
 
+class LoanRequestForm(forms.ModelForm):
 
-    
+    class Meta:
+        model = LoanRequest
+        exclude = ('id_user',)
+
+    loan_amount = forms.DecimalField()
+
+    loan_message = forms.CharField(label="Justificación", max_length=200)
+
+    loan_date = forms.DateTimeField(label='Fecha de pago',
+        widget=forms.SelectDateWidget())
