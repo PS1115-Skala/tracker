@@ -10,7 +10,7 @@ from django.conf import settings
 from django.contrib import messages
 # Create your views here.
 
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, LoanRequestForm
 from .models import Activity, UserData
 
 
@@ -167,7 +167,7 @@ class ActivityView(generic.detail.DetailView):
 
 class LoanView(generic.detail.DetailView):
     model = User
-    form_class = RegisterForm
+    form_class = LoanRequestForm
     template_name = 'trackerApp/register.html'
 
     def get_context_data(self, **kwargs):
@@ -183,3 +183,4 @@ class LoanView(generic.detail.DetailView):
             loan = form.save(commit=False)
             loan.id_user = request.user
             loan.save()
+

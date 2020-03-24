@@ -2,6 +2,9 @@
     justify-content: center;
 }
 
-.lollo {
-    color: red;
+.title {
+    text-align: center;
+    /* font-size: 25px; */
+    font-weight: bold;
 }
+
