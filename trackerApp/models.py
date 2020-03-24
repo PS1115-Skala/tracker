@@ -49,3 +49,9 @@ class Activity(models.Model):
     start = models.DateField()
     end = models.DateField()
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+
+class LoanRequest(models.Model):
+    id_user = models.ForeignKey(User, on_delete=models.CASCADE)
+    amount = models.DecimalField(decimal_places=2, max_digits=3)
+    message = models.CharField(max_length=200)
+    date = models.DateTimeField()

@@ -7,7 +7,7 @@ urlpatterns = [
     path('', RedirectView.as_view(url='login/'), name='redirect'),
     re_path(r'^index/$', IndexView.as_view(), name='index'),
     path('register/', RegisterView.as_view(), name='register'),
-    path('loan/<int:pk>/', LoanView.as_view(), name='loan'),
+    path('loan/', LoanView.as_view(), name='loan'),
     path('login/', LoginView.as_view(), name='login'),
     path('activity/<int:pk>/', ActivityView.as_view(), name='activity'),
     path('profile/', ProfileView.as_view(), name='profile'),

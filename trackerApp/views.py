@@ -167,4 +167,19 @@ class ActivityView(generic.detail.DetailView):
 
 class LoanView(generic.detail.DetailView):
     model = User
-    template_name = "trackerApp/base_loan.html"
+    form_class = RegisterForm
+    template_name = 'trackerApp/register.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        form = self.form_class()
+        context['form'] = form
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            loan = form.save(commit=False)
+            loan.id_user = request.user
+            loan.save()
