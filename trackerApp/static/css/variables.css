@@ -1,18 +1,18 @@
 :root {
-    --color-primary: #C22361;
-    --color-primary-rgb: 194, 35, 97;
-    --color-primary-light: #E0417E;
-    --color-primary-light-rgb: 224, 65, 126;
-    --color-primary-shade: #A40542;
-    --color-primary-shade-rgb: 164, 5, 66;
-
-    --color-secondary: #DB772A;
-    --color-secondary-rgb: 219, 119, 42;
-    --color-secondary-light: #F99548;
-    --color-secondary-light-rgb: 249, 149, 72;
-    --color-secondary-shade: #BD590C;
-    --color-secondary-shade-rgb: 189, 89, 12;
-
+    --color-primary: #DB772A;
+    --color-primary-rgb: 219, 119, 42;
+    --color-primary-light: #F99548;
+    --color-primary-light-rgb: 249, 149, 72;
+    --color-primary-shade: #BD590C;
+    --color-primary-shade-rgb: 189, 89, 12;
+    
+    --color-danger: #C22361;
+    --color-danger-rgb: 194, 35, 97;
+    --color-danger-light: #E0417E;
+    --color-danger-light-rgb: 224, 65, 126;
+    --color-danger-shade: #A40542;
+    --color-danger-shade-rgb: 164, 5, 66;
+    
     --color-light: #FFFFFF;
     --color-light-rgb: 255, 255, 255;
 
