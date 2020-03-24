@@ -14,11 +14,14 @@
                   <div class="title">
                   <h1 class="card-title">Solicitar Prestamo</h1>
                   </div>
-                  <form >
-                    <div class="form-group lollo">
+                  <form action="{% url 'trackerApp:loan' %}" method="post" >
+
+                    {% csrf_token %}
+                    <div class="form-group">
                       <div class="row">
-                        {{form.your_amount.label_tag}}
+                        {{ form.loan_amount.label }}
                       </div>
+
                       <input type="text" class="form-control"  placeholder=1000$>
                     </div>
                     <div class="form-group">

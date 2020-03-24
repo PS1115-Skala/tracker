@@ -165,7 +165,7 @@ class ActivityView(generic.detail.DetailView):
     template_name = "trackerApp/activity.html"
 
 
-class LoanView(generic.detail.DetailView):
+class LoanView(generic.base.TemplateView):
     model = User
     form_class = LoanRequestForm
     template_name = 'trackerApp/base_loan.html'
