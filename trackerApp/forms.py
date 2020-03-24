@@ -25,4 +25,23 @@ class RegisterForm(forms.Form):
         widget=forms.TextInput(attrs={'class': 'expand'}))
 
 
-    
+class ActivityForm(forms.Form):
+    your_title = forms.CharField(label='Titulo', max_length=80,
+        widget=forms.TextInput(attrs=
+            {
+                'class': 'form-control text-center',
+                'style': 'border: none;',
+                'placeholder': 'Actividad',
+                'type': 'text'
+            }))
+    # your_start = forms.DateTimeField(label='Inicio',
+    #     widget=forms.TextInput(attrs=
+    #         {
+    #             'type': 'hidden'
+    #         }))
+    # your_start = forms.DateTimeField(widget=forms.SplitHiddenDateTimeWidget())
+    your_start = forms.CharField(label='Inicio', max_length=80,
+        widget=forms.TextInput(attrs=
+            {
+                'type': 'hidden'
+            }))

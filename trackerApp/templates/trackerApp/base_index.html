@@ -1,43 +1,70 @@
 {% extends "trackerApp/base.html" %}
+{% load tz %}
 
 {% block content %}
 <div class="container-fluid-margin ml-5 mt-5 col-sm">
-    <div class="card p-3 mr-5" style="width: auto ; height: auto">
-        <div class="row align-items-center">
-            <div class="col text-center">
-                <input type="text" class="form-control text-center" style="border: none;" placeholder="Actividad">
-            </div>
-            <div class="col text-center">
-                <div id="reloj"></div>
-            </div>
-            <div class="col-sm-2">
-                <button onclick="startStatus()" type="button" id="start-button" class="btn btn-primary ">Comenzar</button>
-                <button onclick="finishStatus()" type="button" id="finish-button" class="btn btn-danger" hidden>Terminar</button>
-            </div>
+  <div class="card p-3 mr-5 shadow" style="width: auto ; height: auto">
+    <form action="{% url 'trackerApp:index' %}" method="post">
+      {% csrf_token %}
+      <div class="row align-items-center">
+        <div class="col text-center">
+          {{ form.your_title }}
+          {{ form.your_start }}
         </div>
-    </div>
-    <div class="card p-3 mr-5" style="width: auto ; height: auto">
-        <table class="table">
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">Today</th>
-                <th scope="col">Hora</th>
-                <th scope="col">Duraci&oacute;n</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Actividad: Implementaci&oacute;n de nuevo Componente</td>
-                <td>8:00AM</td>
-                <td>1 Hora 15 minutos</td>
-              </tr>
-              <tr>
-                <td>Actividad: Refactorizaci&oacute;n de c&oacute;digo</td>
-                <td>9:15AM</td>
-                <td>20 minutos</td>
-              </tr>
-            </tbody>
-          </table>
-    </div>
+        <div class="col text-center">
+          <div id="reloj"></div>
+        </div>
+        <div class="col-sm-2">
+          <button onclick="startStatus()" type="button" id="start-button" class="btn btn-primary ">Comenzar</button>
+          <button onclick="finishStatus()" type="submit" id="finish-button" class="btn btn-danger"
+            hidden>Terminar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="card p-3 mr-5 shadow mt-16" style="width: auto ; height: auto">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Hoy</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Duraci&oacute;n</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% localtime on %}
+        {% for q in queryset %}
+        <tr>
+          <td>{{ q.title }}</td>
+          <td>{{ q.start | time }}</td>
+          <td>{{ q.duration }}</td>
+        </tr>
+        {% endfor %}
+        {% endlocaltime %}
+      </tbody>
+    </table>
+  </div>
+  <div class="card p-3 mr-5 shadow mt-16" style="width: auto ; height: auto">
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Antes</th>
+          <th scope="col">Fecha</th>
+          <th scope="col">Duraci&oacute;n</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% localtime on %}
+        {% for q in prev_queryset %}
+        <tr>
+          <td>{{ q.title }}</td>
+          <td>{{ q.start }}</td>
+          <td>{{ q.duration }}</td>
+        </tr>
+        {% endfor %}
+        {% endlocaltime %}
+      </tbody>
+    </table>
+  </div>
 </div>
 {% endblock %}

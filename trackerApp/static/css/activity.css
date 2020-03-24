@@ -6,3 +6,13 @@
 .mycontent-left {
     border-right: 1px dashed #333;
   }
+
+.shadow {
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.45);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.45);
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.45);
+}
+
+.mt-16 {
+    margin-top: 16px;
+}
