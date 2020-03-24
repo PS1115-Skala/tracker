@@ -15,25 +15,37 @@
                   <h1 class="card-title">Solicitar Prestamo</h1>
                   </div>
                   <form action="{% url 'trackerApp:loan' %}" method="post" >
-
-                    {% csrf_token %}
-                    <div class="form-group">
-                      <div class="row">
-                        {{ form.loan_amount.label }}
+                    <div>
+                      {% csrf_token %}
+                      <div class="form-group">
+                        <div class="row">
+                          {{ form.loan_amount.label }}
+                        </div>
+                        <div class="row">
+                          {{ form.loan_amount }}
+                        </div>
                       </div>
-
-                      <input type="text" class="form-control"  placeholder=1000$>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Justificación</label>
-                      <textarea style="resize: none" type="text" class="form-control" rows="4" 
-                        id="exampleInputDescription" name="formInputDescription" maxlength="200" 
-                        ></textarea>
-                      <!-- <input type="text" class="form-control" id="exampleInputPassword1"  placeholder={{request.user.position}}> -->
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputPassword1">Fecha de pago</label>
-                      <input type="text" class="form-control" id="exampleInputPassword2"  placeholder="Frontend">
+                      <div class="form-group">
+                        <div class="row">
+                          {{ form.loan_message.label }}
+                        </div>
+                        <div class="row">
+                          {{ form.loan_message }}
+                        </div>
+                        <!-- <label for="exampleInputPassword1">Justificación</label>
+                        <textarea style="resize: none" type="text" class="form-control" rows="4" 
+                          id="exampleInputDescription" name="formInputDescription" maxlength="200" 
+                          ></textarea> -->
+                        <!-- <input type="text" class="form-control" id="exampleInputPassword1"  placeholder={{request.user.position}}> -->
+                      </div>
+                      <div class="form-group">
+                        <div class="row">
+                          {{ form.date.label }}
+                        </div>
+                        <div class="row">
+                          {{ form.date }}
+                        </div>
+                      </div>
                     </div>
                     <div>
                       <li>

@@ -35,10 +35,10 @@ class LoanRequestForm(forms.ModelForm):
         model = LoanRequest
         exclude = ('id_user',)
 
-    loan_amount = forms.DecimalField(label='ODIO',
+    loan_amount = forms.DecimalField(label='Monto',
         widget=forms.TextInput(attrs={'class': 'expand'}))
 
-    loan_message = forms.CharField(label="Justificación", max_length=200)
+    loan_message = forms.CharField(label="Justificación", max_length=200,  widget=forms.Textarea(attrs={'class': 'expand lolo'}))
 
     loan_date = forms.DateTimeField(label='Fecha de pago',
         widget=forms.SelectDateWidget())
