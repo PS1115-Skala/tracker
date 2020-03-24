@@ -77,13 +77,14 @@ class RegisterView(generic.base.TemplateView):
             last_name = form.cleaned_data['your_last_name']
             email = form.cleaned_data['your_email']
             password = form.cleaned_data['your_pass']
+            genre = form.cleaned_data['your_genre']
             position = form.cleaned_data['your_position']
             try:
                 user = User.objects.create_user(email, email, password)
                 user.first_name = name
                 user.last_name = last_name
                 user.save()
-                position = UserData(position=position, id_user=user)
+                position = UserData(position=position, genre=genre, id_user=user)
                 position.save()
 
                 user = authenticate(request, username=email, password=password)
@@ -128,10 +129,6 @@ class ProfileView(generic.detail.DetailView):
         inputDescription = request.POST['formInputDescription']
         inputGenre = request.POST['formInputGenre']
         inputImage = request.FILES.get('image')
-
-        # request.session['genre']=user.genre
-
-        # inputGenre=request.POST['formInputGenre']
 
         try:
             if(inputPosition != ""):  # Se introduce el cargo
