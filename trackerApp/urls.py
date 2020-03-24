@@ -9,7 +9,6 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('loan/', LoanView.as_view(), name='loan'),
     path('login/', LoginView.as_view(), name='login'),
-    path('activity/<int:pk>/', ActivityView.as_view(), name='activity'),
     path('profile/', ProfileView.as_view(), name='profile'),
     
 ]

@@ -3,10 +3,20 @@ var intervalId;
 var tiempoFinal;
 
 function startStatus() {
-    document.getElementById("start-button").hidden = true;
-    document.getElementById("finish-button").hidden = false;
-    fechaVieja = new Date();
-    intervalId = setInterval(muestraReloj, 1000);
+    if($('#actividadInput').val() == ''){
+      alert('Seleccione su actividad a trackear');
+    }
+    else{
+      startTime();
+    };
+}
+
+function startTime(){
+      document.getElementById("start-button").hidden = true;
+      document.getElementById("finish-button").hidden = false;
+      document.getElementById("id_your_start").value = new Date().toISOString();
+      fechaVieja = new Date();
+      intervalId = setInterval(muestraReloj, 1000);
 }
 
 function finishStatus() {

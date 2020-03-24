@@ -5,6 +5,7 @@ from django.core.validators import EmailValidator
 from django.contrib.auth.models import User
 from django.conf import settings
 from django.core.files import File
+from datetime import datetime
 
 # Create your models here.
 class UserData(models.Model):
@@ -46,9 +47,19 @@ class UserData(models.Model):
         
 class Activity(models.Model):
     title = models.CharField(max_length=80)
-    start = models.DateField()
-    end = models.DateField()
+    start = models.DateTimeField()
+    end = models.DateTimeField(auto_now_add=True)
     id_user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
+
+    def __str__(self):
+        duration = (self.end - self.start)
+        return (
+            '\nTitulo: ' + self.title +
+            '\n\tInicio: ' + self.start.strftime("%Y-%m-%d %H:%M:%S") +
+            '\n\tFinal: ' + self.end.strftime("%Y-%m-%d %H:%M:%S") +
+            '\n\tTotal: ' + str(duration.days) + ' days ' + str(duration.seconds) + ' seconds' +
+            '\n\tUsuario: ' + self.id_user.__str__() + '\n'
+        )
 
 class LoanRequest(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)

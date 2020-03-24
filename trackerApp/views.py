@@ -8,18 +8,64 @@ from django.core.validators import EmailValidator
 from django.core.validators import validate_image_file_extension
 from django.conf import settings
 from django.contrib import messages
+from datetime import datetime
 # Create your views here.
 
-from .forms import LoginForm, RegisterForm, LoanRequestForm
+from .forms import LoginForm, RegisterForm, ActivityForm, LoanRequestForm
+
 from .models import Activity, UserData
 
 
-class IndexView(LoginRequiredMixin, generic.list.ListView):
+class IndexView(LoginRequiredMixin, generic.base.TemplateView):
     login_url = '/login/'
     redirect_field_name = 'index'
     template_name = 'trackerApp/base_index.html'
     model = Activity
-    context_object_name = 'my_activities'
+    context_object_name = 'context'
+
+    
+    def get_context_data(self, request):
+        form = ActivityForm()
+        queryset = Activity.objects.filter(id_user=request.user)
+        _queryset = []
+        prev = []
+        for query in queryset:
+            duration = query.end - query.start
+            if query.start.day == datetime.now().day:    
+                _queryset.append({
+                    'title': query.title,
+                    'start': query.start,
+                    'duration': duration.seconds,
+                })
+            else:
+                prev.append({
+                    'title': query.title,
+                    'start': query.start,
+                    'duration': duration.seconds,
+                })
+        return { 'form': form , 'queryset': _queryset, 'prev_queryset': prev }
+
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(request)
+        return render(request, self.template_name, context=context)
+    
+
+    def post(self, request, *args, **kwargs):
+        form = ActivityForm(request.POST)
+        if form.is_valid():
+            title = form.cleaned_data['your_title']
+            start = form.cleaned_data['your_start']
+            try:
+                activity = Activity(title=title, start=start, id_user=request.user)
+                activity.save()
+            except err:
+                print(err)
+        return HttpResponseRedirect('/index/')
+        
+
+
+        
 
 
 class RedirectView(generic.base.RedirectView):
