@@ -12,7 +12,7 @@ class UserData(models.Model):
 
     id_user     = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
     position    = models.CharField(max_length=20)
-    description = models.CharField(max_length=200,default='Descripcion')
+    description = models.CharField(max_length=200,default='Descripción')
     genre_choice = (
         ('Masculino','M'),
         ('Femenino', 'F'),

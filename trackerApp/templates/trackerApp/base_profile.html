@@ -10,7 +10,7 @@
                   <h5 class="card-title">{{ request.user.first_name }} {{request.user.last_name}} </h5>
                   <p class="card-text">{{request.session.description}}</p>
                   <div class="text-right">
-                      <button onclick="edit()" class="btn btn-primary">Editar</button>
+                      <button onclick="edit()" class="btn btn-secondary" style="background-color:orangered;">Editar</button>
                   </div>
                 </div>
             </div>
@@ -18,21 +18,21 @@
         <div class="container-fluid-margin  mt-5 col-8">
             <div class="card" style="width: 100% ; height: auto;" >
                 <div class="card-body">
-                  <h5 class="card-title">Informacion</h5>
+                  <h5 class="card-title">Información</h5>
                   <form action="" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-group">
                       <label for="exampleInputEmail1">Correo</label>
 
 
-                      <input type="email" class="form-control" id="exampleInputEmail1" name="formInputEmail" readonly placeholder={{request.user.username}}>
+                      <input type="email" class="form-control" id="exampleInputEmail1" name="formInputEmail" readonly value={{request.user.username}}>
                       
                       <!-- <small id="emailHelp" class="form-text text-muted">Tu nombre es muy Cool.</small> -->
 
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Cargo Actual</label>
-                      <input type="text" class="form-control" id="exampleInputPassword1" maxlength="20" name="formInputPosition" readonly placeholder="{{request.session.position}}">
+                      <input type="text" class="form-control" id="exampleInputPassword1" maxlength="20" name="formInputPosition" readonly value="{{request.session.position}}">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputPassword1">Sexo</label>
@@ -48,19 +48,18 @@
 
                           <input type="text" class="form-control" readonly value="{{request.session.genre}}">
                         </div>
-                    </div>
-
                       </div>
+                      
                       <div class="form-group">
-                      <label for="exampleInputDescription">Descripcion</label>
-                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" readonly placeholder="{{request.session.description}}"></textarea>
+                      <label for="exampleInputDescription">Descripción</label>
+                      <textarea style="resize: none" type="text" class="form-control" rows="4" id="exampleInputDescription" name="formInputDescription" maxlength="200" disabled >{{request.session.description}}</textarea>
                     </div>
                     <div class="form-group">
                     <label for="id_image">Foto de perfil</label>
-                    <input id="id_image" type="file" class="" name="image" readonly placeholder="" accept=".jpg, .png, .jpeg" disabled style="color:transparent">
+                    <input id="id_image" type="file" class="hidden" name="image"  accept=".jpg, .png, .jpeg" disabled >
                   </div>
 
-                    <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
+                    <button type="submit" id="button-save" class="btn btn-secondary" style="background-color:orangered;" hidden>Guardar</button>
                   </form>
                 </div>
             </div>
