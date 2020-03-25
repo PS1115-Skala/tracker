@@ -4,7 +4,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="container-fluid-margin ml-5 mt-5 col-sm">
-      <div class="card" style="width: 18rem;">
+      <div class="card shadow" style="width: 18rem;">
         <img src="{{request.session.image}}" class="card-img-top" alt="...">
         <div class="card-body">
           <h5 class="card-title">{{ request.user.first_name }} {{request.user.last_name}} </h5>
@@ -16,7 +16,7 @@
       </div>
     </div>
     <div class="container-fluid-margin  mt-5 col-8">
-      <div class="card" style="width: 100% ; height: auto;">
+      <div class="card shadow" style="width: 100% ; height: auto;">
         <div class="card-body">
           <h5 class="card-title">Información</h5>
           <form action="" method="post" enctype="multipart/form-data">
