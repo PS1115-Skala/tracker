@@ -10,7 +10,7 @@
                   <h5 class="card-title">{{ request.user.first_name }} {{request.user.last_name}} </h5>
                   <p class="card-text">{{request.session.description}}</p>
                   <div class="text-right">
-                      <button onclick="edit()" class="btn btn-primary">Editar</button>
+                      <button onclick="edit()" class="btn btn-secondary" style="background-color:orangered;">Editar</button>
                   </div>
                 </div>
             </div>
@@ -59,7 +59,7 @@
                     <input id="id_image" type="file" class="hidden" name="image"  accept=".jpg, .png, .jpeg" disabled >
                   </div>
 
-                    <button type="submit" id="button-save" class="btn btn-primary" hidden>Guardar</button>
+                    <button type="submit" id="button-save" class="btn btn-secondary" style="background-color:orangered;" hidden>Guardar</button>
                   </form>
                 </div>
             </div>
