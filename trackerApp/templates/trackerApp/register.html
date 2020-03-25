@@ -37,7 +37,7 @@
 
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
-
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base_loan.css' %}">
     <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 
@@ -103,7 +103,7 @@
                                     </div>
                                     <div class="container-fluid">
                                         <div class="row pad-topp cen-but">
-                                            <input type="submit" class="prueba but" value="Registrar Usuario">
+                                            <button type="submit" class="prueba btn botton1">Registrar Usuario</button>
                                         </div>
                                         <div class="text">
                                             {% if messages %}

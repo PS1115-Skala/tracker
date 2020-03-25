@@ -39,6 +39,7 @@
     {% comment %} Custom styles for this template {% endcomment %}
     <link rel="stylesheet" href="{% static 'css/simple-sidebar.css' %}">
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base_loan.css' %}">
 
 </head>
 
@@ -76,8 +77,8 @@
                                         </div>
                                     </div>
                                     <div class="container-fluid">
-                                        <div class="row pad-topp cen-but">
-                                            <input type="submit" class="prueba but" value="Login">
+                                        <div class="row pad-topp cen-but boton">
+                                            <button type="submit" class="prueba btn botton1">Login</button>
                                         </div>
                                         <div class="text">
                                             {% if messages %}

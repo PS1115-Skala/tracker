@@ -29,7 +29,8 @@
 }
 
 .botton1 {
-    background-color: #FFA500;
+    background-color: var(--color-primary);
+    color: #fff;
     padding: 10px 20px 10px 20px;
     border: none;
 }
