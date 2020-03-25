@@ -120,6 +120,11 @@ class RegisterView(generic.base.TemplateView):
             password = form.cleaned_data['your_pass']
             genre = form.cleaned_data['your_genre']
             position = form.cleaned_data['your_position']
+            domain = email.split('@')[1]
+            if domain != 'ubicutus.com':
+                context = { 'form': form }
+                messages.info(request, 'Dominio de correo invalido')
+                return render(request, self.template_name, context)
             try:
                 user = User.objects.create_user(email, email, password)
                 user.first_name = name
