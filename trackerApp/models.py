@@ -63,6 +63,6 @@ class Activity(models.Model):
 
 class LoanRequest(models.Model):
     id_user = models.ForeignKey(User, on_delete=models.CASCADE)
-    amount = models.DecimalField(decimal_places=2, max_digits=3)
-    message = models.CharField(max_length=200)
-    date = models.DateTimeField()
+    loan_amount = models.DecimalField(decimal_places=2, max_digits=15)
+    loan_message = models.CharField(max_length=200)
+    loan_date = models.DateTimeField()

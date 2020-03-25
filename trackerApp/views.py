@@ -1,3 +1,4 @@
+import os
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.http import HttpResponseRedirect
@@ -9,12 +10,14 @@ from django.core.validators import validate_image_file_extension
 from django.conf import settings
 from django.contrib import messages
 from datetime import datetime
+from tracker.settings import EMAIL_HOST_USER
+from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 # Create your views here.
 
 from .forms import LoginForm, RegisterForm, ActivityForm, LoanRequestForm
 
 from .models import Activity, UserData
-
 
 class IndexView(LoginRequiredMixin, generic.base.TemplateView):
     login_url = '/login/'
@@ -44,12 +47,10 @@ class IndexView(LoginRequiredMixin, generic.base.TemplateView):
                 })
         return { 'form': form , 'queryset': _queryset, 'prev_queryset': prev }
 
-
     def get(self, request, *args, **kwargs):
         context = self.get_context_data(request)
         return render(request, self.template_name, context=context)
     
-
     def post(self, request, *args, **kwargs):
         form = ActivityForm(request.POST)
         if form.is_valid():
@@ -61,11 +62,6 @@ class IndexView(LoginRequiredMixin, generic.base.TemplateView):
             except err:
                 print(err)
         return HttpResponseRedirect('/index/')
-        
-
-
-        
-
 
 class RedirectView(generic.base.RedirectView):
     pattern_name = 'login'
@@ -228,4 +224,14 @@ class LoanView(generic.base.TemplateView):
             loan = form.save(commit=False)
             loan.id_user = request.user
             loan.save()
+            current_time = datetime.now().strftime("%H:%M:%S")
+
+            mail_text = '''Estimado usuario, se ha enviado una petición de préstamo a las''' + current_time + ''' por una cantidad de ''' + str(loan.loan_amount) + ''' $. \nSi usted no reconoce esta actividad, comuníquese con el equipo administrativo de Ubicutus Apps.\n\n Su petición será procesada en un tiempo no mayor a 5 días hábiles.
+            \n Muchas gracias por utilizar nuestro sistema'''
+
+            send_mail('Solicitud de prestamo', mail_text, EMAIL_HOST_USER, [request.user.email])
+            return HttpResponseRedirect('/index/')
+        else:
+            context = {'form' : form}
+            return render(request, self.template_name, context)
 
