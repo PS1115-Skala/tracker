@@ -34,9 +34,8 @@ class LoanRequestForm(forms.ModelForm):
         model = LoanRequest
         exclude = ('id_user',)
        
-
     loan_amount = forms.DecimalField(label='Monto',
-        widget=forms.TextInput(attrs={'class': 'expand w'}))
+        widget=forms.NumberInput(attrs={'class': 'expand w'}))
 
     loan_message = forms.CharField(label="Justificación", max_length=200,  
         widget=forms.Textarea(attrs={'class': 'expand  w'}))

@@ -230,7 +230,9 @@ class LoanView(generic.base.TemplateView):
             \n Muchas gracias por utilizar nuestro sistema'''
 
             send_mail('Solicitud de prestamo', mail_text, EMAIL_HOST_USER, [request.user.email])
-            return HttpResponseRedirect('/index/')
+            context = {'form' : form, 'message' : '¡Solicitud enviada correctamente!'}
+            return render(request, self.template_name, context)
+
         else:
             context = {'form' : form}
             return render(request, self.template_name, context)
