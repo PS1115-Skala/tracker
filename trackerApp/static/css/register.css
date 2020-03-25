@@ -60,3 +60,8 @@ body {
     font-weight: bold;
     color: crimson;
 }
+
+.genero {
+    border-color: darkgrey;
+    border-radius: inherit;
+}

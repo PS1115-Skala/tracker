@@ -23,7 +23,7 @@ class RegisterForm(forms.Form):
     your_pass = forms.CharField(label='Contraseña', max_length=16, min_length=5,
         widget=forms.TextInput(attrs={'class': 'expand', 'type': 'password'}))
 
-    your_genre = forms.ChoiceField(label='Género', choices=[('M','Masculino'),('F','Femenino'), ('O', 'Otros')])
+    your_genre = forms.ChoiceField(label='Género', choices=[('M','Masculino'),('F','Femenino'), ('O', 'Otros')], widget=forms.Select(attrs={'class': 'genero form-control '}))
 
     your_position = forms.CharField(label='Cargo', max_length=20,
         widget=forms.TextInput(attrs={'class': 'expand'}))
@@ -34,11 +34,12 @@ class LoanRequestForm(forms.ModelForm):
     class Meta:
         model = LoanRequest
         exclude = ('id_user',)
+       
 
     loan_amount = forms.DecimalField(label='Monto',
-        widget=forms.TextInput(attrs={'class': 'expand'}))
+        widget=forms.TextInput(attrs={'class': 'expand w'}))
 
-    loan_message = forms.CharField(label="Justificación", max_length=200,  widget=forms.Textarea(attrs={'class': 'expand lolo'}))
+    loan_message = forms.CharField(label="Justificación", max_length=200,  widget=forms.Textarea(attrs={'class': 'expand  w'}))
 
     loan_date = forms.DateTimeField(label='Fecha de pago',
-        widget=forms.SelectDateWidget())
+        widget=forms.SelectDateWidget(attrs={'class': 'expand  '}))

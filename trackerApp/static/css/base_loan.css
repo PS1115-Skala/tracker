@@ -8,3 +8,37 @@
     font-weight: bold;
 }
 
+.pad {
+    padding: 10px 10px 10px 15px;
+}
+
+.pad1 {
+    padding: 10px 10px 0px 15px;
+}
+
+.reglas {
+    padding: 5px;
+}
+
+.boton {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    justify-content: flex-end;
+    display: flex;
+    justify-content: center;
+}
+
+.botton1 {
+    background-color: #FFA500;
+    padding: 10px 20px 10px 20px;
+    border: none;
+}
+
+.w {
+    width: 100%;
+}
+
+.genero {
+    border-color: darkgrey;
+    border-radius: inherit;
+}
