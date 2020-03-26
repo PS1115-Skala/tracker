@@ -1,0 +1,18 @@
+.aling {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-top: 3rem;
+}
+
+.info {
+    text-align: center;
+    font-size: 35px;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}

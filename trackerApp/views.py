@@ -181,7 +181,7 @@ class ProfileView(generic.detail.DetailView):
                 userdata.position = inputPosition
                 userdata.save()
 
-            if(inputGenre != ""):  # Se introduce el cargo
+            if(inputGenre != "Genero"):  # Se introduce el cargo
                 userdata.genre = inputGenre
                 userdata.save()
             if(inputImage != None and userdata.imageVerification()):
@@ -195,10 +195,12 @@ class ProfileView(generic.detail.DetailView):
                 userdata.save()
 
             validator(email)  # Se verifica que se haya introducido un email
-            user = User.objects.get(id=request.user.id)
-            user.username = email
-            user.email = email
-            user.save()
+            domain = email.split('@')[1]
+            if(domain=='ubicutus.com'):
+                user = User.objects.get(id=request.user.id)
+                user.username = email
+                user.email = email
+                user.save()
 
         except:
             return HttpResponseRedirect('/profile/')

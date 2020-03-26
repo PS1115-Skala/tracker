@@ -49,7 +49,7 @@ class ActivityForm(forms.Form):
             {
                 'class': 'form-control text-center',
                 'style': 'border: none;',
-                'placeholder': 'Actividad',
+                'placeholder': 'Nombre de la actividad a realizar',
                 'type': 'text'
             }))
     # your_start = forms.DateTimeField(label='Inicio',
