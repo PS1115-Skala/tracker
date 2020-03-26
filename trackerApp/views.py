@@ -9,7 +9,7 @@ from django.core.validators import EmailValidator
 from django.core.validators import validate_image_file_extension
 from django.conf import settings
 from django.contrib import messages
-from datetime import datetime
+from datetime import datetime, date
 from tracker.settings import EMAIL_HOST_USER
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
@@ -230,11 +230,20 @@ class LoanView(generic.base.TemplateView):
             loan.id_user = request.user
             loan.save()
             current_time = datetime.now().strftime("%H:%M:%S")
+            pay_time = loan.loan_date.strftime("%D")
 
-            mail_text = '''Estimado usuario, se ha enviado una petición de préstamo a las''' + current_time + ''' por una cantidad de ''' + str(loan.loan_amount) + ''' $. \nSi usted no reconoce esta actividad, comuníquese con el equipo administrativo de Ubicutus Apps.\n\n Su petición será procesada en un tiempo no mayor a 5 días hábiles.
+            confirmation_text = '''Estimado usuario, se ha enviado una petición de préstamo a las ''' + current_time + ''' por una cantidad de ''' + str(loan.loan_amount) + ''' $. \nSi usted no reconoce esta actividad, comuníquese con el equipo administrativo de Ubicutus Apps.\n\n Su petición será procesada en un tiempo no mayor a 5 días hábiles.
             \n Muchas gracias por utilizar nuestro sistema'''
 
-            send_mail('Solicitud de prestamo', mail_text, EMAIL_HOST_USER, [request.user.email])
+            send_mail('Solicitud de préstamo', confirmation_text, EMAIL_HOST_USER, [request.user.email])
+
+            admin_text = ''' El usuario ''' + request.user.username + ''' ha solicitado un préstamo por ''' + str(loan.loan_amount)  + ''', a pagar el día ''' + pay_time + '''.
+            \n \n Fecha de solicitud: ''' + str(date.today()) + '''.'''
+
+            send_mail('Solicitud de préstamo 1', confirmation_text, EMAIL_HOST_USER, [request.user.email])
+
+            send_mail('Solicitud de préstamo 2', admin_text, EMAIL_HOST_USER, [request.user.email])
+
             context = {'form' : form, 'message' : '¡Solicitud enviada correctamente!'}
             return render(request, self.template_name, context)
 
