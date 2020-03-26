@@ -12,7 +12,7 @@
           {{ form.your_start }}
         </div>
         <div class="col text-center">
-          <div id="reloj"></div>
+          <div id="reloj">00:00:00</div>
         </div>
         <div class="col-sm-2">
           <button onclick="startStatus()" type="button" id="start-button" class="btn botton1 ">Comenzar</button>
@@ -24,9 +24,10 @@
   </div>
   <div class="card p-3 mr-5 shadow mt-16" style="width: auto ; height: auto">
     <table class="table">
+      <h5 class="title">Actividades de hoy</h5>
       <thead class="thead-dark">
         <tr>
-          <th scope="col">Hoy</th>
+          <th scope="col">Actividad</th>
           <th scope="col">Hora</th>
           <th scope="col">Duraci&oacute;n</th>
         </tr>
@@ -37,7 +38,7 @@
         <tr>
           <td>{{ q.title }}</td>
           <td>{{ q.start | time }}</td>
-          <td>{{ q.duration }}</td>
+          <td>{{ q.duration }} segundos</td>
         </tr>
         {% endfor %}
         {% endlocaltime %}
@@ -46,9 +47,10 @@
   </div>
   <div class="card p-3 mr-5 shadow mt-16" style="width: auto ; height: auto">
     <table class="table">
-      <thead class="thead-dark">
+    <h5 class="title">Actividades de días anteriores</h5>
+      <thead class="thead-dark">       
         <tr>
-          <th scope="col">Antes</th>
+          <th scope="col">Actividad</th>
           <th scope="col">Fecha</th>
           <th scope="col">Duraci&oacute;n</th>
         </tr>
@@ -59,7 +61,7 @@
         <tr>
           <td>{{ q.title }}</td>
           <td>{{ q.start }}</td>
-          <td>{{ q.duration }}</td>
+          <td>{{ q.duration }} segundos</td>
         </tr>
         {% endfor %}
         {% endlocaltime %}
