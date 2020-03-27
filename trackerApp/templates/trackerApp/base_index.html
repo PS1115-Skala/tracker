@@ -2,7 +2,7 @@
 {% load tz %}
 
 {% block content %}
-<div class="container-fluid-margin ml-5 mt-5 col-sm">
+<div class="container-fluid-margin ml-5 mt-5 ">
   <div class="card p-3 mr-5 shadow" style="width: auto ; height: auto">
     <form action="{% url 'trackerApp:index' %}" method="post">
       {% csrf_token %}
@@ -22,17 +22,17 @@
       </div>
     </form>
   </div>
-  <div class="card p-3 mr-5 shadow mt-16" style="width: auto ; height: auto">
+  <div class="card p-3 mr-5 shadow mt-16 mar-top" style="width: auto ; height: auto">
+    <h5 class="card-title ti-ac"> Actividades realizadas hoy </h5>
     <table class="table">
-      <h5 class="title">Actividades de hoy</h5>
-      <thead class="thead-dark">
+      <thead class="table-warning cen">
         <tr>
           <th scope="col">Actividad</th>
           <th scope="col">Hora</th>
           <th scope="col">Duraci&oacute;n</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="cen">
         {% localtime on %}
         {% for q in queryset %}
         <tr>
@@ -45,17 +45,17 @@
       </tbody>
     </table>
   </div>
-  <div class="card p-3 mr-5 shadow mt-16" style="width: auto ; height: auto">
+  <div class="card p-3 mr-5 shadow mt-16 mar-top" style="width: auto ; height: auto">
+    <h5 class="card-title ti-ac"> Historial de actividades </h5>
     <table class="table">
-    <h5 class="title">Actividades de días anteriores</h5>
-      <thead class="thead-dark">       
+      <thead class="table-warning cen">
         <tr>
           <th scope="col">Actividad</th>
           <th scope="col">Fecha</th>
           <th scope="col">Duraci&oacute;n</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody class="cen">
         {% localtime on %}
         {% for q in prev_queryset %}
         <tr>
